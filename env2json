@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+
+import json
+import sys
+
+lines = sys.stdin.readlines()
+stripped_lines = [line.strip().split('=') for line in lines if '=' in line]
+safe_lines = []
+
+for line in stripped_lines:
+  k = line[0]
+  v = line[1]
+  if not v:
+      v = ''
+  safe_lines.append([k, v])
+
+print(json.dumps(dict(safe_lines)))
+sys.exit(0)
